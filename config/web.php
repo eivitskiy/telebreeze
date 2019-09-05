@@ -51,6 +51,13 @@ $config = [
             ],
         ],
         */
+        'elasticsearch' => [
+            'class' => 'yii\elasticsearch\Connection',
+            'nodes' => [
+                ['http_address' => 'elasticsearch:9200'],
+                //настройте несколько хостов, если у вас есть кластер
+            ],
+        ],
     ],
     'params' => $params,
 ];
