@@ -15,6 +15,9 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'mJIx-xXda-tNw-rcqAelbf7qhlYuWgMy',
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ],
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -43,19 +46,29 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
+            'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
+                // default routes
+                ['pattern'=>'/', 'route' => 'site/index'],
+                ['pattern'=>'site/about', 'route' => 'site/about'],
+                ['pattern'=>'site/contact', 'route' => 'site/contact'],
+                ['pattern'=>'site/login', 'route' => 'site/login'],
+                ['pattern'=>'site/logout', 'route' => 'site/logout'],
+                // custom routes
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'employee',
+                ],
             ],
         ],
-        */
         'elasticsearch' => [
             'class' => 'yii\elasticsearch\Connection',
+            'autodetectCluster' => false,
             'nodes' => [
                 ['http_address' => 'elasticsearch:9200'],
-                //настройте несколько хостов, если у вас есть кластер
             ],
         ],
     ],
