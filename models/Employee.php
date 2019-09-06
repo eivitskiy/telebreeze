@@ -53,7 +53,7 @@ class Employee extends ActiveRecord
     public function behaviors()
     {
         return [
-            'timestamp' => [
+            [
                 'class' => TimestampBehavior::className(),
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => 'birthday',
@@ -62,6 +62,15 @@ class Employee extends ActiveRecord
                 'value' => function () {
                     return date('Y-m-d', strtotime($this->birthday));
                 },
+            ],
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_AFTER_FIND => 'birthday',
+                ],
+                'value' => function () {
+                    return date('d.m.Y', strtotime($this->birthday));
+                }
             ],
             'saveRelations' => [
                 'class' => SaveRelationsBehavior::className(),
