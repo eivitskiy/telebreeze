@@ -8,9 +8,12 @@ use DateTime;
 use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+//use yii\elasticsearch\ActiveRecord;
 
 class Employee extends ActiveRecord
 {
+//    protected $_id;
+
     public static function tableName()
     {
         return 'employees';

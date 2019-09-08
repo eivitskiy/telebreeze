@@ -3,11 +3,13 @@
 
 namespace app\models;
 
-
 use yii\db\ActiveRecord;
+//use yii\elasticsearch\ActiveRecord;
 
 class Job extends ActiveRecord
 {
+//    protected $_id;
+
     public static function tableName()
     {
         return 'jobs';
